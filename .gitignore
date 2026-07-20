@@ -22,6 +22,21 @@ out/
 Debug/
 Release/
 
+# Ninja build files
+build.ninja
+.ninja_deps
+.ninja_log
+rules.ninja
+
+# CTest (тесты CMake)
+Testing/
+DartConfiguration.tcl
+
+# ============================================
+# Файлы генерации и анализа кода
+# ============================================
+compile_commands.json    # База данных компиляции для clangd/IDE
+
 # ============================================
 # Настройки IDE и редакторов
 # ============================================
