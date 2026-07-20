@@ -1,0 +1,129 @@
+📝 Упражнение: "Система подсчёта очков"
+Создайте программу, которая имитирует простую систему подсчёта очков в игре. Она должна использовать все изученные концепции:
+
+Требования:
+Глобальная переменная — счётчик сыгранных игр
+Namespace — настройки игры (множитель очков, бонус)
+Функция с локальными переменными — подсчёт очков за раунд
+Структура — хранение результата игрока
+Forward declaration — опережающее объявление функции
+
+
+/**
+ * @file main.cpp
+ * @brief Упражнение: области видимости и объявления
+ * @date 2026-07-21
+ */
+
+#include <iostream>
+
+// ============================================
+// 1. ГЛОБАЛЬНАЯ ОБЛАСТЬ ВИДИМОСТИ
+// ============================================
+
+int gamesPlayed = 0;  // Глобальная переменная: счётчик игр
+
+// ============================================
+// 2. ОПЕРЕЖИВАЮЩИЕ ОБЪЯВЛЕНИЯ (Forward Declarations)
+// ============================================
+
+struct PlayerResult;  // Опережающее объявление структуры
+int calculateScore(int basePoints, int multiplier);  // Опережающее объявление функции
+
+// ============================================
+// 3. ПРОСТРАНСТВО ИМЁН (Namespace)
+// ============================================
+
+namespace GameSettings {
+    int scoreMultiplier = 2;  // Множитель очков
+    int bonusPoints = 10;     // Бонусные очки
+}
+
+// ============================================
+// 4. СТРУКТУРА (Определение)
+// ============================================
+
+struct PlayerResult {
+    std::string name;
+    int totalScore;
+    int roundsPlayed;
+};
+
+// ============================================
+// 5. ФУНКЦИИ (Определения)
+// ============================================
+
+// Функция подсчёта очков за раунд
+int calculateScore(int basePoints, int multiplier) {
+    int roundScore = basePoints * multiplier;  // Локальная переменная
+    return roundScore;
+}
+
+// Функция отображения результата
+void displayResult(const PlayerResult& player) {
+    std::cout << "\n=== Результат игрока ===" << std::endl;
+    std::cout << "Имя: " << player.name << std::endl;
+    std::cout << "Общий счёт: " << player.totalScore << std::endl;
+    std::cout << "Сыграно раундов: " << player.roundsPlayed << std::endl;
+    std::cout << "Всего игр в системе: " << gamesPlayed << std::endl;
+}
+
+// ============================================
+// 6. ГЛАВНАЯ ФУНКЦИЯ
+// ============================================
+
+int main() {
+    // Локальные переменные функции main
+    PlayerResult player;
+    player.name = "Dmitry";
+    player.totalScore = 0;
+    player.roundsPlayed = 0;
+    
+    std::cout << "=== Игра началась ===" << std::endl;
+    std::cout << "Множитель очков: " << GameSettings::scoreMultiplier << std::endl;
+    std::cout << "Бонусные очки: " << GameSettings::bonusPoints << std::endl;
+    
+    // Раунд 1
+    {
+        int basePoints = 5;  // Локальная переменная в блоке
+        int score = calculateScore(basePoints, GameSettings::scoreMultiplier);
+        player.totalScore += score;
+        player.roundsPlayed++;
+        gamesPlayed++;  // Увеличиваем глобальный счётчик
+        
+        std::cout << "\nРаунд 1: базовые очки = " << basePoints 
+                  << ", заработано = " << score << std::endl;
+    }
+    // Здесь basePoints и score больше не существуют (вышли из области видимости)
+    
+    // Раунд 2
+    {
+        int basePoints = 8;
+        int score = calculateScore(basePoints, GameSettings::scoreMultiplier);
+        player.totalScore += score + GameSettings::bonusPoints;  // Добавляем бонус
+        player.roundsPlayed++;
+        gamesPlayed++;
+        
+        std::cout << "Раунд 2: базовые очки = " << basePoints 
+                  << ", заработано = " << score + GameSettings::bonusPoints << std::endl;
+    }
+    
+    // Отображаем итоговый результат
+    displayResult(player);
+    
+    return 0;
+}
+
+
+🔍 Вопросы для самопроверки
+После запуска попробуйте ответить:
+Почему gamesPlayed сохраняет значение между раундами?
+Что произойдёт, если попытаться обратиться к basePoints после закрывающей } блока?
+Зачем нужно опережающее объявление struct PlayerResult;, если мы определяем её ниже?
+Как обратиться к scoreMultiplier без указания GameSettings::?
+
+💡 Дополнительное задание (если хотите усложнить)
+Добавьте:
+Ещё один namespace Difficulty с настройками сложности
+Функцию resetGame(), которая обнуляет gamesPlayed
+Массив из нескольких PlayerResult для хранения результатов разных игроков
