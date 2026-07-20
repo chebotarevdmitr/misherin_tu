@@ -1,27 +1,43 @@
-# include <iostream>
+
+/**
+ * @file main.cpp
+ * @brief Учебный проект для практики основ C++
+ * @author Dmitry Chebotarev
+ * @date 2026-07-21
+ */
+
+#include <iostream>
+
+int main()
+{
+    std::cout << "MisherinGame - C++ Learning Project" << std::endl;
+    std::cout << "Practicing declarations, definitions, and scopes" << std::endl;
+
+    return 0;
+}
 
 // 1.3 Declaration (объявление), Definitions (определения) and scopes (области видимости).
 
-int a  ; // globalno = 0 
-void f(int x); //obyavili funkciyu f
-class C;      //obyavili class
-struct S ;    //obyavili  strukturu
-enum E;
-union U;
-namespace N 
-{
-int x = 2;
-}
+//int a  ; // globalno = 0 
+//void f(int x); //obyavili funkciyu f
+//class C;      //obyavili class
+//struct S ;    //obyavili  strukturu
+//enum E;
+//union U;
+//namespace N 
+//{
+//int x = 2;
+//}
 
-namespace N 
-{
- int y = 3;
-}
-int main(){
- 
+//namespace N 
+//{
+ //int y = 3;
+//}
+//int main(){
+// 
 
-return 0;
-}
+//return 0;
+//}
 
 /*
 1. Declaration (Объявление)
