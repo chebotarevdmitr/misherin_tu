@@ -1,11 +1,14 @@
 
-/**
+/*
  * @file main.cpp
  * @brief Учебный проект для практики основ C++
  * @author Dmitry Chebotarev
  * @date 2026-07-21
  */
 
+
+
+/*
 #include <iostream>
 
 int main()
@@ -15,6 +18,10 @@ int main()
 
     return 0;
 }
+*/
+
+
+
 
 // 1.3 Declaration (объявление), Definitions (определения) and scopes (области видимости).
 
